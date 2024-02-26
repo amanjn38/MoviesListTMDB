@@ -1,6 +1,7 @@
 package com.finance.movieslisttmdb.model
 
 import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 
 data class Crew(
     val adult: Boolean,
@@ -14,4 +15,4 @@ data class Crew(
     @SerializedName("original_name") val originalName: String,
     val popularity: Double,
     @SerializedName("profile_path") val profilePath: String
-)
+) : Serializable

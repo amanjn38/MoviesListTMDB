@@ -32,9 +32,9 @@ class ImageAdapter(
         fun bind(backdrop: Backdrop) {
             binding.apply {
                 binding.apply {
-                    if (backdrop.file_path.isNotEmpty()) {
+                    if (backdrop.filePath.isNotEmpty()) {
                         Glide.with(itemView)
-                            .load(Constants.BASE_URL_IMAGE + backdrop.file_path)
+                            .load(Constants.BASE_URL_IMAGE + backdrop.filePath)
                             .transition(DrawableTransitionOptions.withCrossFade()) // Smooth transition
                             .centerCrop()
                             .into(binding.image)

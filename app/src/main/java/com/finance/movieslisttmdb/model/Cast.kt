@@ -1,6 +1,7 @@
 package com.finance.movieslisttmdb.model
 
 import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 
 data class Cast(
     val adult: Boolean,
@@ -15,4 +16,4 @@ data class Cast(
     @SerializedName("original_name") val originalName: String,
     val popularity: Double,
     @SerializedName("profile_path") val profilePath: String
-)
+) : Serializable

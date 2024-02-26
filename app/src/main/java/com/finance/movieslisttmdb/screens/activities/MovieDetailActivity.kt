@@ -1,9 +1,11 @@
 package com.finance.movieslisttmdb.screens.activities
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.viewModels
+import androidx.core.view.ContentInfoCompat.Flags
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
@@ -115,7 +117,10 @@ class MovieDetailActivity : AppCompatActivity() {
         viewModel.getMovieDetail(movieId.toString())
         viewModel.getMovieCredits(movieId.toString())
         viewModel.getMovieImages(movieId.toString())
+
+
     }
+
 
     private fun setupMovieDetails(movieDetail: MovieDetail) {
 
@@ -156,19 +161,41 @@ class MovieDetailActivity : AppCompatActivity() {
     }
 
     private fun setupMovieCredits(movieCredits: MovieCredits) {
+        binding.crewSeeAllTxt.setOnClickListener {
+            val intent = Intent(this, DisplayAllActivity::class.java)
+            intent.putExtra("movieCredits", movieCredits)
+            intent.putExtra("type", "crew")
+            startActivity(intent)
+        }
 
+        binding.castSeeAllTxt.setOnClickListener {
+            val intent = Intent(this, DisplayAllActivity::class.java)
+            intent.putExtra("movieCredits", movieCredits)
+            intent.putExtra("type", "cast")
+            startActivity(intent)
+        }
         binding.castRecyclerView.layoutManager =
             LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
         binding.castRecyclerView.adapter = CastAdapter(movieCredits.cast)
-
+        binding.castSeeAllTxt.text = "See All ${movieCredits.cast.size} -->"
         binding.crewRecyclerView.layoutManager =
             LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
         binding.crewRecyclerView.adapter = CrewAdapter(movieCredits.crew)
+        binding.crewSeeAllTxt.text = "See All ${movieCredits.crew.size} -->"
+
     }
 
     private fun setupMovieImages(movieImages: MovieImages) {
+        binding.imagesSeeAllTxt.setOnClickListener {
+            val intent = Intent(this, DisplayAllActivity::class.java)
+            intent.putExtra("movieImages", movieImages)
+            intent.putExtra("type", "images")
+            startActivity(intent)
+        }
         binding.imagesRecyclerView.layoutManager =
             LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+        binding.imagesSeeAllTxt.text = "See All ${movieImages.backdrops.size} -->"
+
         if (movieImages.backdrops.isNullOrEmpty()) {
 
         } else {
