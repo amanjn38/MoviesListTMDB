@@ -55,6 +55,9 @@ class MovieRepositoryImpl @Inject constructor(private val requestViewModel: Requ
 
     }
 
+    override suspend fun getPersonDetail(personId: String): Resource<Response> =
+        executeRequest("person/$personId")
+
     private suspend fun executeRequestWithPagination(
         endpoint: String,
         page: Int,

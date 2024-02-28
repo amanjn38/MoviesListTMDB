@@ -1,5 +1,6 @@
 package com.finance.movieslisttmdb.viewmodels
 
+import androidx.activity.viewModels
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -35,6 +36,8 @@ class MovieViewModel @Inject constructor(
     private val _genresLiveData = MutableLiveData<List<Genre>>()
     val genresLiveData: LiveData<List<Genre>> = _genresLiveData
 
+    private val _peopleDetail = MutableLiveData<Resource<Response>>()
+    val peopleDetail: LiveData<Resource<Response>> get() = _peopleDetail
     fun fetchGenres() {
         viewModelScope.launch {
             val genres = genreRepository.getGenres()
@@ -51,6 +54,12 @@ class MovieViewModel @Inject constructor(
     fun getMovieImages(movieID: String) {
         viewModelScope.launch {
             _movieImages.value = movieRepository.getMovieImages(movieID)
+        }
+    }
+
+    fun getPersonDetail(personId: String){
+        viewModelScope.launch {
+            _peopleDetail.value = movieRepository.getPersonDetail(personId)
         }
     }
 

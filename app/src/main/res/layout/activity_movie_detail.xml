@@ -12,7 +12,7 @@
 
         <ImageView
             android:id="@+id/imageViewBackDrop"
-            android:layout_width="600dp"
+            android:layout_width="match_parent"
             android:layout_height="400dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

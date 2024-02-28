@@ -20,9 +20,11 @@ import com.finance.movieslisttmdb.model.Genre
 import com.finance.movieslisttmdb.utils.Constants
 import com.bumptech.glide.request.target.Target
 import com.finance.movieslisttmdb.R
+import com.finance.movieslisttmdb.utils.OnItemClickListener
 
 class CastAdapter(
-    private val items: List<Cast>
+    private val items: List<Cast>,
+    private val itemClicked: OnItemClickListener<Int>
 ) : RecyclerView.Adapter<CastAdapter.ItemViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
         val inflater = LayoutInflater.from(parent.context)
@@ -58,6 +60,10 @@ class CastAdapter(
 
                 binding.personName.text = cast.name
                 binding.personRole.text = cast.character
+
+                parent.setOnClickListener {
+                    itemClicked.onItemClick(cast.id)
+                }
             }
         }
     }

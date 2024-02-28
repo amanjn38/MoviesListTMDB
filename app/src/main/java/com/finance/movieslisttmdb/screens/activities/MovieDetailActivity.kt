@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.viewModels
-import androidx.core.view.ContentInfoCompat.Flags
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
@@ -22,6 +21,7 @@ import com.finance.movieslisttmdb.screens.adapters.ProductionCompaniesAdapter
 import com.finance.movieslisttmdb.utils.Constants.Companion.BASE_URL_IMAGE
 import com.finance.movieslisttmdb.utils.CustomGridLayoutManager
 import com.finance.movieslisttmdb.utils.HttpUtils
+import com.finance.movieslisttmdb.utils.OnItemClickListener
 import com.finance.movieslisttmdb.utils.convertRating
 import com.finance.movieslisttmdb.utils.formatDate
 import com.finance.movieslisttmdb.utils.formatTime
@@ -30,7 +30,7 @@ import com.google.gson.Gson
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class MovieDetailActivity : AppCompatActivity() {
+class MovieDetailActivity : AppCompatActivity(), OnItemClickListener<Int> {
 
     private lateinit var binding: ActivityMovieDetailBinding
     private val viewModel: MovieViewModel by viewModels()
@@ -117,8 +117,6 @@ class MovieDetailActivity : AppCompatActivity() {
         viewModel.getMovieDetail(movieId.toString())
         viewModel.getMovieCredits(movieId.toString())
         viewModel.getMovieImages(movieId.toString())
-
-
     }
 
 
@@ -150,8 +148,6 @@ class MovieDetailActivity : AppCompatActivity() {
 
         binding.overview.text = movieDetail.overview
 
-
-
         binding.productionCompaniesRecyclerView.layoutManager =
             LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
         binding.productionCompaniesRecyclerView.adapter =
@@ -176,11 +172,11 @@ class MovieDetailActivity : AppCompatActivity() {
         }
         binding.castRecyclerView.layoutManager =
             LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
-        binding.castRecyclerView.adapter = CastAdapter(movieCredits.cast)
+        binding.castRecyclerView.adapter = CastAdapter(movieCredits.cast, this)
         binding.castSeeAllTxt.text = "See All ${movieCredits.cast.size} -->"
         binding.crewRecyclerView.layoutManager =
             LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
-        binding.crewRecyclerView.adapter = CrewAdapter(movieCredits.crew)
+        binding.crewRecyclerView.adapter = CrewAdapter(movieCredits.crew, this)
         binding.crewSeeAllTxt.text = "See All ${movieCredits.crew.size} -->"
 
     }
@@ -202,5 +198,11 @@ class MovieDetailActivity : AppCompatActivity() {
             binding.imagesRecyclerView.adapter = ImageAdapter(movieImages.backdrops)
         }
 
+    }
+
+    override fun onItemClick(movieId: Int) {
+        val intent = Intent(this, PeopleDetailActivity::class.java)
+        intent.putExtra("peopleId", movieId)
+        startActivity(intent)
     }
 }

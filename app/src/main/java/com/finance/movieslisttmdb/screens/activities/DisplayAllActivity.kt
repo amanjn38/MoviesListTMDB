@@ -1,5 +1,6 @@
 package com.finance.movieslisttmdb.screens.activities
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.GridLayoutManager
@@ -14,8 +15,9 @@ import com.finance.movieslisttmdb.screens.adapters.CrewAdapter
 import com.finance.movieslisttmdb.screens.adapters.GenreAdapter
 import com.finance.movieslisttmdb.screens.adapters.ImageAdapter
 import com.finance.movieslisttmdb.utils.CustomGridLayoutManager
+import com.finance.movieslisttmdb.utils.OnItemClickListener
 
-class DisplayAllActivity : AppCompatActivity() {
+class DisplayAllActivity : AppCompatActivity(), OnItemClickListener<Int> {
 
     private lateinit var binding: ActivityDisplayAllBinding
 
@@ -37,7 +39,7 @@ class DisplayAllActivity : AppCompatActivity() {
                     GridLayoutManager(this, 3) // Change the spanCount as needed
                 binding.recyclerView.layoutManager = layoutManager
                 if (movieCredits != null) {
-                    binding.recyclerView.adapter = CrewAdapter(movieCredits.crew)
+                    binding.recyclerView.adapter = CrewAdapter(movieCredits.crew, this)
                 }
             } else if (type == "cast") {
                 val movieCredits = extras.getSerializable("movieCredits") as? MovieCredits
@@ -46,7 +48,8 @@ class DisplayAllActivity : AppCompatActivity() {
                     GridLayoutManager(this, 3) // Change the spanCount as needed
                 binding.recyclerView.layoutManager = layoutManager
                 if (movieCredits != null) {
-                    binding.recyclerView.adapter = CastAdapter(movieCredits.cast)
+                    binding.recyclerView.adapter =
+                        CastAdapter(movieCredits.cast, this)
                 }
             } else if (type == "images") {
                 val movieImages = extras.getSerializable("movieImages") as? MovieImages
@@ -58,5 +61,11 @@ class DisplayAllActivity : AppCompatActivity() {
 
             }
         }
+    }
+
+    override fun onItemClick(movieId: Int) {
+        val intent = Intent(this, PeopleDetailActivity::class.java)
+        intent.putExtra("peopleId", movieId)
+        startActivity(intent)
     }
 }

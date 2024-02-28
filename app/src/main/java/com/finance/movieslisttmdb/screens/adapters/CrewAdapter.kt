@@ -11,9 +11,11 @@ import com.finance.movieslisttmdb.R
 import com.finance.movieslisttmdb.databinding.CrewLayoutBinding
 import com.finance.movieslisttmdb.model.Crew
 import com.finance.movieslisttmdb.utils.Constants
+import com.finance.movieslisttmdb.utils.OnItemClickListener
 
 class CrewAdapter(
-    private val items: List<Crew>
+    private val items: List<Crew>,
+    private val itemClicked: OnItemClickListener<Int>
 ) : RecyclerView.Adapter<CrewAdapter.ItemViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
         val inflater = LayoutInflater.from(parent.context)
@@ -48,6 +50,10 @@ class CrewAdapter(
 
                 binding.personName.text = crew.name
                 binding.personRole.text = crew.job
+
+                parent.setOnClickListener {
+                    itemClicked.onItemClick(crew.id)
+                }
             }
         }
     }

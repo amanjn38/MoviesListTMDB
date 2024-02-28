@@ -22,4 +22,6 @@ interface MovieRepository {
     suspend fun discoverMovies(page: Int, options: Map<String, String>): Resource<Response>
 
     suspend fun searchMovies(page: Int, query: Map<String, String>): Resource<Response>
+
+    suspend fun getPersonDetail(personId: String): Resource<Response>
 }
