@@ -1,6 +1,5 @@
 package com.finance.movieslisttmdb.viewmodels
 
-import androidx.activity.viewModels
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel

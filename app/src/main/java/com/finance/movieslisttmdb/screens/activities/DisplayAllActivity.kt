@@ -7,14 +7,11 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.finance.movieslisttmdb.R
 import com.finance.movieslisttmdb.databinding.ActivityDisplayAllBinding
-import com.finance.movieslisttmdb.databinding.ActivityMovieDetailBinding
 import com.finance.movieslisttmdb.model.MovieCredits
 import com.finance.movieslisttmdb.model.MovieImages
 import com.finance.movieslisttmdb.screens.adapters.CastAdapter
 import com.finance.movieslisttmdb.screens.adapters.CrewAdapter
-import com.finance.movieslisttmdb.screens.adapters.GenreAdapter
 import com.finance.movieslisttmdb.screens.adapters.ImageAdapter
-import com.finance.movieslisttmdb.utils.CustomGridLayoutManager
 import com.finance.movieslisttmdb.utils.OnItemClickListener
 
 class DisplayAllActivity : AppCompatActivity(), OnItemClickListener<Int> {
