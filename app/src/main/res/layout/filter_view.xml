@@ -1,35 +1,439 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical">
+    android:layout_height="wrap_content">
 
-    <TextView
-        android:id="@+id/chips_txt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="12dp"
-        android:text="Genres"
-        android:textColor="@color/black"
-        android:textSize="20sp"
-        android:textStyle="bold" />
-
-    <com.google.android.material.chip.ChipGroup
-        android:id="@+id/chipGroup"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:orientation="horizontal"
-        android:padding="8dp" />
+        android:orientation="vertical">
 
-    <Button
-        android:id="@+id/bt_apply"
-        style="@style/ButtonTextStyle2_Selected_Primary"
-        android:layout_width="160dp"
-        android:layout_height="36dp"
-        android:layout_gravity="center"
-        android:layout_marginBottom="12dp"
-        android:text="Apply" />
+        <TextView
+            android:id="@+id/filters_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:text="Filters"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:textStyle="bold" />
 
-</LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginTop="16dp"
+            android:background="@color/progress_gray" />
+
+
+        <TextView
+            android:id="@+id/show_me_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="12dp"
+            android:text="Show Me"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="8dp">
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:text="Everything" />
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:text="Movies I haven't seen" />
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:text="Movies I have seen" />
+        </RadioGroup>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginTop="16dp"
+            android:background="@color/progress_gray" />
+
+        <TextView
+            android:id="@+id/availabilites_me_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="12dp"
+            android:text="Availabilities"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <CheckBox
+            android:id="@+id/checkBoxSearchAll"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="8dp"
+            android:text="Search all availabilities" />
+
+
+        <LinearLayout
+            android:id="@+id/checkboxContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:orientation="vertical"
+            android:padding="8dp">
+
+            <CheckBox
+                android:id="@+id/cbStream"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Stream" />
+
+            <CheckBox
+                android:id="@+id/cbFree"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Free" />
+
+            <CheckBox
+                android:id="@+id/cbAds"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Ads" />
+
+            <CheckBox
+                android:id="@+id/cbRent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Rent" />
+
+            <CheckBox
+                android:id="@+id/cbBuy"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Buy" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginTop="16dp"
+            android:background="@color/progress_gray" />
+
+        <TextView
+            android:id="@+id/release_date_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="12dp"
+            android:text="Release Dates"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <CheckBox
+            android:id="@+id/checkBoxSearchAllReleases"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="8dp"
+            android:text="Search all releases?" />
+
+        <CheckBox
+            android:id="@+id/checkBoxSearchAllCountries"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="8dp"
+            android:text="Search all countries?" />
+
+        <Spinner
+            android:id="@+id/countriesSpinner"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="12dp" />
+
+
+        <LinearLayout
+            android:id="@+id/checkboxReleases"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:orientation="vertical"
+            android:padding="8dp">
+
+            <CheckBox
+                android:id="@+id/cbTheatricalLimited"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Theatrical (limited)" />
+
+            <CheckBox
+                android:id="@+id/cbTheatrical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Theatrical" />
+
+            <CheckBox
+                android:id="@+id/cbPremiere"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Premiere" />
+
+            <CheckBox
+                android:id="@+id/cbDigital"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Digital" />
+
+            <CheckBox
+                android:id="@+id/cbPhysical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Physical" />
+
+            <CheckBox
+                android:id="@+id/cbTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="TV" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="16dp"
+            android:layout_weight="10"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="44dp"
+                android:layout_gravity="center"
+                android:layout_marginStart="24dp"
+                android:layout_weight="5"
+                android:gravity="center_vertical"
+                android:text="from"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/from_date"
+                android:layout_width="0dp"
+                android:layout_height="44dp"
+                android:layout_gravity="center"
+                android:layout_marginEnd="20dp"
+                android:layout_weight="5"
+                android:background="@drawable/btn_round_unselected_1"
+                android:gravity="center_vertical|center"
+                android:maxLines="1"
+                android:paddingStart="4dp"
+                android:paddingEnd="12dp"
+                android:textColor="@color/secondaryColor"
+                android:textSize="12sp"
+                app:drawableStartCompat="@drawable/baseline_calendar_month_24"
+                tools:text="23/02/2023" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="16dp"
+            android:layout_weight="10"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="44dp"
+                android:layout_gravity="center"
+                android:layout_marginStart="24dp"
+                android:layout_weight="5"
+                android:gravity="center_vertical"
+                android:text="to"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/to_date"
+                android:layout_width="0dp"
+                android:layout_height="44dp"
+                android:layout_gravity="center"
+                android:layout_marginEnd="20dp"
+                android:layout_weight="5"
+                android:background="@drawable/btn_round_unselected_1"
+                android:gravity="center_vertical|center"
+                android:maxLines="1"
+                android:paddingStart="4dp"
+                android:paddingEnd="12dp"
+                android:textColor="@color/secondaryColor"
+                android:textSize="12sp"
+                app:drawableStartCompat="@drawable/baseline_calendar_month_24"
+                tools:text="23/02/2023" />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginTop="16dp"
+            android:background="@color/progress_gray" />
+
+        <TextView
+            android:id="@+id/chips_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="12dp"
+            android:text="Genres"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/chipGroup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:orientation="horizontal"
+            android:padding="8dp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginTop="16dp"
+            android:background="@color/progress_gray" />
+
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/chipGroupCertifications"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:orientation="horizontal"
+            android:padding="8dp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginTop="16dp"
+            android:background="@color/progress_gray" />
+
+        <Spinner
+            android:id="@+id/languageSpinner"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="12dp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginTop="16dp"
+            android:background="@color/progress_gray" />
+
+        <TextView
+            android:id="@+id/user_score"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:text="User Score"
+            android:textColor="@color/secondaryColor"
+            android:textSize="20sp" />
+
+        <SeekBar
+            android:id="@+id/seekbar_user_score"
+            android:layout_width="152dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:max="10"
+            android:min="0" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginTop="16dp"
+            android:background="@color/progress_gray" />
+
+        <TextView
+            android:id="@+id/votes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:text="Minimum User Votes"
+            android:textColor="@color/secondaryColor"
+            android:textSize="20sp" />
+
+        <SeekBar
+            android:id="@+id/seekbar_minimum_user_votes"
+            android:layout_width="152dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:max="500"
+            android:min="0" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginTop="16dp"
+            android:background="@color/progress_gray" />
+
+        <TextView
+            android:id="@+id/runtime_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:text="Runtime"
+            android:textColor="@color/secondaryColor"
+            android:textSize="20sp" />
+
+        <SeekBar
+            android:id="@+id/seebar_runtime"
+            android:layout_width="152dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:max="400"
+            android:min="0" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginTop="16dp"
+            android:background="@color/progress_gray" />
+
+        <Button
+            android:id="@+id/bt_apply"
+            style="@style/ButtonTextStyle2_Selected_Primary"
+            android:layout_width="160dp"
+            android:layout_height="36dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="12dp"
+            android:text="Apply" />
+
+    </LinearLayout>
+</ScrollView>

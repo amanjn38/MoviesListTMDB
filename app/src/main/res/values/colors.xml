@@ -14,4 +14,7 @@
     <color name="primaryColor">@color/blue</color>
     <color name="secondaryColor">#4C474D</color>
     <color name="blue">#3A86FF</color>
+    <color name="secondaryColorLight">#B24C474D</color>
+    <color name="secondaryExtraLight">#2CD3CECE</color>
+
 </resources>
